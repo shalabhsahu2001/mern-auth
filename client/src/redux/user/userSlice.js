@@ -22,7 +22,7 @@ const userSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         }
-    }
+    },
 });
 
 export const {signInStart, signInSuccess, signInFailure} = userSlice.actions;
