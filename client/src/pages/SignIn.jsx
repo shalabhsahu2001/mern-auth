@@ -23,11 +23,12 @@ export default function SignIn() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      dispatch(signInSuccess(data));
+      
       if(data.success === false) {
-        dispatch(signInFailure(error));
+        dispatch(signInFailure(data.message));
         return;
       }
+      dispatch(signInSuccess(data));
       navigate('/');
     } catch (error) {
       dispatch(signInFailure(error));
@@ -48,7 +49,7 @@ export default function SignIn() {
           <span className='text-blue-500'>Sign Up</span>
         </Link>
       </div>
-      <p className='text-red-700 mt-5'>{error && "Something went wrong"}</p>
+      <p className='text-red-700 mt-5'>{error ? error|| "Something went wrong": ''}</p>
     </div>
   )
 }
